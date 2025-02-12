@@ -1,14 +1,19 @@
 $('.mail-choice').change(function() {
     var selectedElement = $(this);
-    if ($(this).is(":checked")) {
-        $(this).parent().addClass('selected-bg');
+    $('.mail-choice').not(this).prop("checked", false); // Deselect other checkboxes
+
+    if (selectedElement.is(":checked")) {
+        selectedElement.parent().addClass('selected-bg');
+    } else {
+        selectedElement.parent().removeClass('selected-bg');
     }
-    // Show the text
-    let index = $("input").index($(this));
-    console.debug("Selected: " + index);
-    $(".mail-contents").each(function(i, value) {
-        if (i == index) {
-            // Show the element
+
+    // Show the corresponding task details
+    let index = $(".mail-choice").index(selectedElement);
+    console.debug("Selected Task Index: " + index);
+
+    $(".mail-contents").each(function(i) {
+        if (i === index) {
             $(this).css("display", "block");
         } else {
             $(this).css("display", "none");
@@ -16,10 +21,10 @@ $('.mail-choice').change(function() {
     });
 });
 
+// Handle task selection when clicking anywhere on the task row
 $(".msg").click(function() {
     let mailChoice = $(this).children(".mail-choice");
-    mailChoice.attr("checked", "checked");
-    mailChoice.trigger("change");
+    mailChoice.prop("checked", true).trigger("change");
 });
 
 $(".ham").click(function() {
