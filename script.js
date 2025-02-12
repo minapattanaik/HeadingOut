@@ -1,27 +1,4 @@
-$(document).on("change", ".mail-choice", function() {
-    var selectedElement = $(this);
-
-    if (selectedElement.is(":checked")) {
-        selectedElement.parent().addClass("selected-bg").siblings().removeClass("selected-bg");
-    }
-
-    let index = $(".mail-choice").index(selectedElement);
-
-    console.debug("Selected Index: " + index);
-
-    $(".mail-contents").each(function(i) {
-        if (i === index) {
-            $(this).fadeIn(300).css("display", "block");
-        } else {
-            $(this).fadeOut(300, function() {
-                $(this).css("display", "none");
-            });
-        }
-    });
-    updateTaskCounts();
-});
-
-/*$('.mail-choice').change(function() {
+$('.mail-choice').change(function() {
     var selectedElement = $(this);
     if ($(this).is(":checked")) {
         $(this).parent().addClass('selected-bg');
@@ -37,7 +14,7 @@ $(document).on("change", ".mail-choice", function() {
             $(this).css("display", "none");
         }
     });
-});*/
+});
 
 $(".msg").click(function() {
     let mailChoice = $(this).children(".mail-choice");
