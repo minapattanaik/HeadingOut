@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     let tasks = $(".mail-choice"); // Get all checkboxes
     let currentIndex = 0; // Start from first task
@@ -56,60 +55,3 @@ $(document).ready(function () {
         selectTasksWithAnimation();
     }, 1000);
 });
-
-var n = d.toString();
-$("#todays-date").html(n);
-
-$(".dolphins").css("display", "none");
-$("#dolphinContainer").hover(function() {
-    console.debug("Display dolphins");
-    $(".dolphins").css("display", "");
-    $(".dolphins").addClass("dolphin-jump");
-}, function() {
-    $(".dolphins").css("display", "none");
-    $(".dolphins").removeClass("dolphin-jump");
-});
-
-// Melissa's thoughts
-
-$(document).ready(function() {
-    /* Every time the window is scrolled ... */
-    $(document).scroll(function() {
-        console.debug("Scroll");
-        /* Check the location of each desired element */
-        $('.thought').each(function(i) {
-
-            var bottom_of_object = $(this).position().top + $(this).outerHeight();
-            var bottom_of_window = $(window).scrollTop() + $(window).height();
-
-            /* If the object is completely visible in the window, fade it it */
-            if (bottom_of_window > bottom_of_object) {
-                console.debug("Make it appear!");
-                $(this).animate({ 'opacity': '1' }, 1500);
-
-            }
-
-        });
-
-    });
-});
-$("#create").click(function() {
-    $(this).before("<textarea class='cursive'>Believe in Who You Can Be</textarea>");
-});
-
-var profileRevealed = false;
-
-function revealProfile() {
-    if (profileRevealed) {
-        console.debug("Hide profile");
-        $(".user-profile-area").css("display", "none");
-         $(".inbox-container").css("width", "40%");
-    } else {
-        console.debug("Reveal profile");
-        $(".user-profile-area").css("display", "flex");
-        $(".inbox-container").css("width", "100%");
-    }
-    profileRevealed = !profileRevealed;
-    let updatedButtonText = profileRevealed ? "Hide Profile" : "Profile";
-    $("#reveal-profile-button").text(updatedButtonText);
-}
