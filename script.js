@@ -1,5 +1,6 @@
 $(document).ready(function () {
     let tasks = $(".mail-choice");
+
     function displayTaskDetails(index) {
         $(".mail-contents").hide();
         $(".mail-contents").eq(index).fadeIn(300);
@@ -9,8 +10,8 @@ $(document).ready(function () {
     }
 
     function updateTaskCounts() {
-        let checkedCount = $(".inbox .mail-choice:checked").length;
-        let totalTasks = $(".inbox .mail-choice").length;
+        let checkedCount = $(".mail-choice:checked").length;
+        let totalTasks = $(".mail-choice").length;
 
         $("#completed-count").html(checkedCount);
         $("#todo-count").html(totalTasks - checkedCount);
@@ -24,18 +25,18 @@ $(document).ready(function () {
     }
 
     // init
-    $(".mail-contents").hide();
-    
+    $(".mail-contents").hide();      
     $(".msg").removeClass("selected-bg");
-    tasks.prop("checked", false);
-    
+    tasks.prop("checked", false);  
     updateTaskCounts();
 
-    // interaction
+    // interactions
     $(".msg").on("click", function (e) {
         let index = $(".msg").index(this);
         let checkbox = $(this).find(".mail-choice");
 
         displayTaskDetails(index);
-
         checkbox.prop("checked", true);
+        updateTaskCounts();
+    });
+}); 
